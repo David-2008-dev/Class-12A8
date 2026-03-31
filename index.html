@@ -1,0 +1,459 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <title>Lớp 12A8 K18</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    body {
+      background: #f3f5ff;
+      color: #222;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 20px 16px 40px;
+    }
+
+    header {
+      margin-top: 16px;
+      padding: 24px 20px;
+      border-radius: 20px;
+      background: linear-gradient(135deg, #4e54c8, #8f94fb);
+      color: #fff;
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before,
+    header::after {
+      content: "";
+      position: absolute;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.15);
+      filter: blur(2px);
+    }
+
+    header::before {
+      width: 160px;
+      height: 160px;
+      top: -40px;
+      left: -20px;
+    }
+    header::after {
+      width: 220px;
+      height: 220px;
+      bottom: -80px;
+      right: -40px;
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 1;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.8rem;
+      background: rgba(0, 0, 0, 0.18);
+      margin-bottom: 8px;
+    }
+
+    .badge span.icon {
+      font-size: 1rem;
+    }
+
+    .class-name {
+      font-size: 2rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .class-sub {
+      margin-top: 4px;
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    .header-note {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      opacity: 0.9;
+    }
+
+    .quick-stats {
+      margin-top: 14px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px 20px;
+      font-size: 0.85rem;
+      opacity: 0.95;
+    }
+
+    .quick-stats-item {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: rgba(0, 0, 0, 0.12);
+    }
+
+    .sections {
+      margin-top: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .section {
+      padding: 18px 20px;
+      border-radius: 16px;
+      background: #fff;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+
+    .section-title span.icon {
+      font-size: 1.3rem;
+    }
+
+    .section p {
+      font-size: 0.95rem;
+      line-height: 1.7;
+      color: #444;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1.1fr 1fr;
+      gap: 18px;
+    }
+
+    @media (max-width: 768px) {
+      .grid-2 {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .teacher-card {
+      padding: 14px 14px 16px;
+      border-radius: 14px;
+      background: #f1f3ff;
+      border: 1px solid #d9ddff;
+    }
+
+    .teacher-name {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .teacher-role {
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 4px;
+    }
+
+    .teacher-desc {
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    .roles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 10px;
+      margin-top: 6px;
+    }
+
+    .role-card {
+      padding: 10px 12px;
+      border-radius: 12px;
+      border: 1px solid #e1e4ff;
+      background: #fafbff;
+      font-size: 0.9rem;
+    }
+
+    .role-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #777;
+      margin-bottom: 2px;
+    }
+
+    .role-name {
+      font-weight: 600;
+      color: #333;
+    }
+
+    .tagline {
+      margin-top: 10px;
+      font-size: 0.9rem;
+      font-style: italic;
+      color: #555;
+    }
+
+    .members-info {
+      margin-bottom: 10px;
+      font-size: 0.9rem;
+      color: #555;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9rem;
+      margin-top: 4px;
+    }
+
+    th, td {
+      border: 1px solid #e3e6ff;
+      padding: 6px 8px;
+      text-align: left;
+    }
+
+    th {
+      background: #eef0ff;
+      font-weight: 600;
+    }
+
+    tr:nth-child(even) td {
+      background: #fafbff;
+    }
+
+    .placeholder-row {
+      text-align: center;
+      font-style: italic;
+      color: #888;
+    }
+
+    .note-small {
+      margin-top: 6px;
+      font-size: 0.8rem;
+      color: #888;
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 20px;
+      font-size: 0.8rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <!-- PHẦN ĐẦU TRANG -->
+    <header>
+      <div class="header-content">
+        <div class="badge">
+          <span class="icon">🏫</span>
+          <span>Lớp học 12A8 - Khóa 18</span>
+        </div>
+        <div class="class-name">12A8 K18</div>
+        <div class="class-sub">Tập thể đoàn kết – năng động – nhiệt huyết</div>
+        <p class="header-note">
+          Trang web giới thiệu thông tin lớp, giáo viên chủ nhiệm, ban cán sự và danh sách 42 thành viên.
+        </p>
+        <div class="quick-stats">
+          <div class="quick-stats-item">Sĩ số: <b>42 học sinh</b> (sẽ cập nhật)</div>
+          <div class="quick-stats-item">Giáo viên chủ nhiệm: <b>Cô Mai Thị Hạt</b></div>
+          <div class="quick-stats-item">Năm học: <b>Lớp 12 - Khóa 18</b></div>
+        </div>
+      </div>
+    </header>
+
+    <div class="sections">
+      <!-- GIỚI THIỆU LỚP & GVCN -->
+      <section class="section">
+        <div class="section-title">
+          <span class="icon">📘</span>
+          <span>Giới thiệu lớp 12A8 K18</span>
+        </div>
+        <div class="grid-2">
+          <div>
+            <p>
+              Lớp <b>12A8 K18</b> là một tập thể gồm 42 thành viên với nhiều tính cách khác nhau
+              nhưng cùng chung một mục tiêu: cố gắng học tập, đoàn kết và cùng nhau tạo nên những kỷ niệm
+              đẹp nhất của tuổi học trò.
+            </p>
+            <p style="margin-top: 8px;">
+              Dưới sự dẫn dắt của <b>cô giáo chủ nhiệm Mai Thị Hạt</b>, lớp luôn cố gắng giữ vững nề nếp,
+              tinh thần học tập nghiêm túc nhưng vẫn năng động trong các hoạt động phong trào, văn nghệ,
+              thể thao của trường.
+            </p>
+            <p class="tagline">
+              “12A8 K18 – Nơi chúng ta cùng nhau viết nên thanh xuân.”
+            </p>
+          </div>
+          <div>
+            <div class="teacher-card">
+              <div class="teacher-name">Cô giáo: Mai Thị Hạt</div>
+              <div class="teacher-role">Giáo viên chủ nhiệm lớp 12A8 K18</div>
+              <div class="teacher-desc">
+                Luôn tận tâm, gần gũi với học sinh, vừa nghiêm khắc trong học tập
+                nhưng cũng rất tâm lý và thấu hiểu, là người dìu dắt 12A8 trong suốt năm học cuối cấp.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- BAN CÁN SỰ LỚP -->
+      <section class="section">
+        <div class="section-title">
+          <span class="icon">👥</span>
+          <span>Ban cán sự lớp</span>
+        </div>
+        <p>
+          Ban cán sự lớp là những người đại diện cho tập thể, hỗ trợ cô chủ nhiệm trong việc quản lý lớp,
+          truyền đạt thông tin và tạo nên bầu không khí học tập – sinh hoạt tích cực.
+        </p>
+        <div class="roles-grid">
+          <div class="role-card">
+            <div class="role-label">Giáo viên chủ nhiệm</div>
+            <div class="role-name">Cô Mai Thị Hạt</div>
+          </div>
+          <div class="role-card">
+            <div class="role-label">Lớp trưởng</div>
+            <div class="role-name">Cao Tuấn Hưng</div>
+          </div>
+          <div class="role-card">
+            <div class="role-label">Bí thư chi đoàn</div>
+            <div class="role-name">Nguyễn Thị Huệ</div>
+          </div>
+          <div class="role-card">
+            <div class="role-label">Sao đỏ</div>
+            <div class="role-name">Nguyễn Thanh Tâm</div>
+          </div>
+          <div class="role-card">
+            <div class="role-label">Thủ quỹ</div>
+            <div class="role-name">Trần Thị Hà Linh</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- DANH SÁCH THÀNH VIÊN -->
+      <section class="section">
+        <div class="section-title">
+          <span class="icon">📜</span>
+          <span>Danh sách thành viên lớp 12A8 K18</span>
+        </div>
+        <p class="members-info">
+          Lớp gồm <b>42 học sinh</b>.
+        </p>
+        <table>
+          <thead>
+            <tr>
+              <th>STT</th>
+              <th>Họ và tên</th>
+              <th>Ghi chú (nếu có)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!--
+              HƯỚNG DẪN THÊM HỌC SINH:
+              - Mỗi học sinh là 1 dòng <tr> mới.
+              - Thay STT = 1, 2, 3,... 42
+              - Ví dụ:
+                <tr>
+                  <td>1</td>
+                  <td>Nguyễn Văn A</td>
+                  <td>Tổ 1</td>
+                </tr>
+            -->
+            <tr>
+              <td class="placeholder-row" colspan="3">
+                Danh sách 42 thành viên sẽ được cập nhật sau...
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="note-small">
+      </section>
+
+      <!-- GHI CHÚ / KỶ NIỆM -->
+       <!-- ẢNH TẬP THỂ LỚP -->
+<section class="section">
+  <div class="section-title">
+    <span class="icon">📸</span>
+    <span>Ảnh tập thể lớp 12A8 K18</span>
+  </div>
+
+  <p>
+    Đây là một trong những khoảnh khắc đẹp nhất của lớp 12A8 K18 – bức ảnh chụp cả lớp cùng cô giáo trong phòng học. 
+    Một kỷ niệm đáng nhớ của tuổi học trò!
+  </p>
+
+  <div style="margin-top: 14px; text-align: center;">
+    <!-- Chèn ảnh lớp vào đây -->
+
+    <img 
+      src="anhtapthelop.jpg" 
+      alt="Ảnh tập thể lớp 12A8 K18" 
+      style="
+        width: 100%;
+        max-width: 900px;
+        border-radius: 14px;
+        box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+      " 
+    />
+  </div>
+
+  <p style="margin-top: 10px; font-size: 0.85rem; color: #666; text-align: center;">
+    *Ảnh tập thể lớp 12A8 – Kỷ niệm đáng nhớ cùng cô giáo chủ nhiệm Mai Thị Hạt.*
+  </p>
+</section>
+      <section class="section">
+        <div class="section-title">
+          <span class="icon">⭐</span>
+          <span>Kỷ niệm & lời nhắn</span>
+        </div>
+        <p>
+          Đây có thể là nơi lưu lại những kỷ niệm của lớp: những buổi sinh hoạt, tham quan,
+          hoạt động ngoại khóa, hình ảnh đáng nhớ, những câu nói vui, hoặc lời chúc dành cho nhau
+          khi sắp ra trường.
+        </p>
+      </section>
+    </div>
+
+    <div class="footer">
+      &copy; <span id="year"></span> Lớp 12A8 K18 - Trang giới thiệu tập thể lớp.
+    </div>
+  </div>
+
+  <script>
+    // Tự động cập nhật năm hiện tại ở cuối trang
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
+
